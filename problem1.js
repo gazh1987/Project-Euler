@@ -12,7 +12,7 @@ var sb = 0; //sum to subtract
 
 s = mlt(ma, m, t, s, 0);
 sb = sub(m, t, sb, lcm(ma[0], ma[1]));
-console.log(s - sb); //answer
+console.log(s - sb); //answer: 233168
 
 //Caluclates the sum of multiples ma below t
 function mlt(ma, m, t, s, i){
@@ -31,12 +31,12 @@ function mlt(ma, m, t, s, i){
 //The least common multiple of 3 and 5 is 15. This means all
 //multiples of 15 have been counted twice. These duplicate 
 //calculations need to be removed. 
-function sub(m, t, sa, i){
-	while (i * m < t){
-		sa += i * m;
-		m++;
+function sub(m, t, sb, i){
+	if (i * m < t){
+		sb += i * m;
+		return sub(m+=1, t, sb, i);
 	}		
-	return sa;	
+	return sb;	
 }
 
 //Find the least common multiple
