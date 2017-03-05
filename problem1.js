@@ -11,17 +11,21 @@ var s = 0; //sum
 var sb = 0; //sum to subtract
 
 s = mlt(ma, m, t, s, 0);
-s = mlt(ma, m, t, s, 1);
 sb = sub(m, t, sb, lcm(ma[0], ma[1]));
 console.log(s - sb); //answer
 
 //Caluclates the sum of multiples ma below t
-function mlt(ma, m, t, s, i) {
-	while (ma[i] * m < t) {
+function mlt(ma, m, t, s, i){
+	if(ma[i] * m < t) {
 		s += ma[i] * m;
-		m++;
-	}		
-	return s;
+		return mlt(ma, m+=1, t, s, i);
+	}
+	else if (ma[i] * m > t){
+		return mlt(ma, m=1, t, s, 1);
+	}
+	else {
+		return s;
+	}
 }
 
 //The least common multiple of 3 and 5 is 15. This means all
